@@ -1,0 +1,89 @@
+{% extends 'footer.html' %}
+{% block header %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }}</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet"> 
+	<!-- Bootstrap CDN & font awesome -->
+	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+
+	<!-- static files -->
+	<!-- ======== For all pages ====== -->
+	<link rel="stylesheet" type="text/css" href="{% static 'homepage/css/main.css' %}">
+	<script type="text/javascript" src="{% static 'homepage/js/csrf.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'homepage/css/notificationpanel.css' %}">
+	<script type="text/javascript" src="{% static 'homepage/js/notificationpanel.js' %}"></script>
+	<link rel="shortcut icon" href="{% static 'homepage/images/favicon.ico' type='image/x-icon' %}">
+	<script type="text/javascript" src="{% static 'global/js/global.js' %}"></script>
+	<script src="{% static 'global/nprogress/nprogress.js' %}"></script>
+	<link rel='stylesheet' href="{% static 'global/nprogress/nprogress.css' %}"/>
+
+	{% if request.path == '/' %}
+	<!-- =========== Only for homepage ============== -->
+	<script type="text/javascript" src="{% static 'homepage/js/homepage.js' %}"></script>
+	{% endif %}
+	
+	{% if request.path == '/dashboard/' %}
+	<!-- =========== For Dashboard =========== -->
+	<script type="text/javascript" src="{% static 'dashboard/js/manage.js' %}"></script>
+	<script type="text/javascript" src="{% static 'dashboard/js/html5musicplayer.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/html5musicplayer.css' %}">
+	<!-- ========== For settings page =========-->
+	<script type="text/javascript" src="{% static 'accountsetting/js/accountsetting.js' %}"></script>
+	{% endif %}
+
+	{% if request.path == '/settings/' %}
+	<!-- ========== For settings page =========-->
+	<script type="text/javascript" src="{% static 'accountsetting/js/accountsetting.js' %}"></script>
+	{% endif %}
+</head>
+<body>
+<!-- =============================== Notification Panel ==========================================-->
+<div id="notificationWrapper">
+	<div class='notificationpanel' id='notificationPanel'>
+		<span class="notification" id='notificationPanelMessage'>Message</span>
+		<span class="notificationdismiss fas" onclick="notificationDismiss();">&#xf410;</span>
+	</div>
+</div>
+
+<!-- =============================== Notification Ends =============================================--> 
+<div class='container-fluid' id='bodyWrapper'>
+
+	<div class='container-fluid' id='headerWrapper'>
+		<div class='d-flex'>
+			<div class='p-2'>
+				<a href="{% url 'home' %}"><img src='{% static 'homepage/images/logo.png' %}' class='img-fluid logo'></a>
+			</div>
+
+			<div class='p-2 flex-grow-1'>
+				<!-- menu -->
+				<div class="d-flex justify-content-end menu">
+					{% if not user.is_authenticated %}
+					<a href="{% url 'home' %}"><span class='fas fa-home'></span>Home</a>
+					{% endif %}
+					<a href="#"><span class='fab fa-android'></span>Android</a>
+					<a href="#"><span class='fab fa-app-store-ios'></span>iPhone</a>
+					{% if not user.is_authenticated %}
+					<a href="#" onclick="showLoginForm()"><span class='fas fa-sign-in-alt'></span>Login</a>
+					<a href="#" onclick="showRegisterForm()"><span class='fas fa-user-plus'></span>Register</a>
+					{% else %}
+					<a href="#" onclick="navigateToMyMusics(event)"><span class='fas fa-music'></span>My Music</a>
+					<a href="#" onclick="navigateToSettings(event);"><span class="fas fa-user-cog"></span>Settings</a>
+					<a href="{% url 'logout' %}"><span class='fas fa-sign-out-alt'></span>Logout</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+{% block body %}
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'header.html' %}
+{% block body %}
+
+<div id='accountSettingWrapper' class="container-fluid d-flex justify-content-center">
+	<div class="accountSettingBox p-2">
+		<span class="fas fa-user-circle userIcon"></span>
+
+		<div class="userInfo">
+			<kbd><span class='fas far fa-user'></span> {{ user.username }}</kbd><br/>
+			<kbd><span class="fas fa-envelope"></span> {{ user.email }}</kbd>
+		</div>
+
+		<div class='accountSettingChangePassword'>
+			<form id='accountSettingChangePasswordForm'>{% csrf_token %}
+				<input type="password" class='formCacheDeceiver'>
+				<input type="password" name="newpassword" id='newpassword' class="form-control" autocomplete="off" placeholder="New password" onfocus="this.placeholder=''" onblur="this.placeholder='New password'">
+				<input type="password" name="confirmnewpassword" id='confirmnewpassword' class="form-control" autocomplete="off" value="" placeholder="Confirm new password" onfocus="this.placeholder=''" onblur="this.placeholder='Confirm new password'">
+
+				<input type="submit" name="" hidden>
+			</form>
+			<button type="button" class="btn btn-block" id='changePasswordButton'>Change Password</button>
+
+		</div>
+	</div>
+</div>
+
+{% endblock %}

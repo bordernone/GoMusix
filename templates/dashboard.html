@@ -1,0 +1,64 @@
+{% extends 'header.html' %}
+
+
+{% block body %}
+{% load static %}
+
+<div id='dashboardWrapper' class='container-fluid'>
+	<div class="row">
+		<!-- ======= Musics Grid ========= -->
+		<div class="col-sm-8" id='musicsWrapper'>
+			{% for sn, title, artist in songs %}
+			<div class='musicsList' onClick='playThisSong({{ sn }});'>
+				<span class='albumImg'>
+					<img src="thumbnail/{{ sn }}/">
+					<span class="fas" id='dashboardSongDeleteButton' onClick="deleteThisSong(event,{{ sn }});">&#xf2ed;</span>
+				</span>
+				<span class='title'>
+					{{ title }}
+				</span>
+				<span class='artist'>
+					{{ artist }}
+				</span>
+			</div>
+			{% endfor %}
+		</div>
+
+		<!-- ======== Action Sidebar ======= -->
+		<div class="col-sm-4" id='actionsWrapper'>
+			<label for='imgUploadFormButton' class="upload">
+				<form>
+				<input type="file" name="file" id='songsInputField' multiple>{% csrf_token %}
+				</form>
+				<p>Upload</p>
+			</label>
+
+			<div id="musicPlayer">
+				<span class='albumImg'><img src="{% static 'dashboard/images/default-thumbnail.png' %}"></span>
+
+				<div class='musicPlayerMiscWrapper'>
+					<div class='customMediaPlayer d-flex' data-music-src="">
+						<div class="playerActionButton item p-2 musicPlayerPlayButton" onclick='playButtonToggle(this);'><span id='musicPlayerIcon' class="fas">&#xf04b;</span></div>
+						<div class="playerProgressBar item p-2 flex-grow-1"><span class="playerProgress"><span class="progressPercent"></span></span></div>
+
+						<audio id='musicPlayerHtmlMain' ontimeupdate="musicPlayerRunProgress(this);">
+							<source src="" type="audio/mpeg">
+						</audio>
+					</div>
+					<span class='playAllButton'><span class="fas fa-forward"></span> Play All </span>
+				</div>
+
+				<!-- Volume Slider -->
+				<div class='musicPlayerVolumeManager'>
+					<span class="musicPlayerVolumeWrapper">
+						<span class="musicPlayerVolumeSlider"></span>
+					</span>	
+				</div>
+			</div>
+		</div>
+		<!-- ================== Action Sidebar Ends=============== -->
+	</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'header.html' %}
+
+
+{% block body %}
+
+<div class="container-fluid" id="mainWrapperHomePage">
+	<h1>Sync Everywhere</h1>
+
+	<!-- registration/login box -->
+	<div class='d-flex justify-content-center'>
+		<div class="p-2"  id='registerWrapper'>
+			<h3>Create an account</h3>
+			<!-- registration form pre-->
+			<div class='formWrapperRegisterPre'>
+				<form id='registrationPreForm'>{% csrf_token %}
+					<input type="text" class="form-control" id="registerEmailInput" placeholder="Your email here" onfocus="this.placeholder=''" onblur="this.placeholder='Your email here'">
+					<input type="submit" name="" hidden> <!-- to submit form on enter -->
+				</form>
+
+				<button type="button" class="btn btn-block" id='registerButtonPre'>Sign Up Now</button>
+				
+				<div class='links'>
+					<a href="#">Recover an account</a><br/>
+					<a href="#" onclick="showLoginForm()">Sign in to your account</a>
+				</div>
+			</div>
+
+			<!-- registration form post -->
+			<div class='formWrapperRegisterPost'>
+				<form id='registrationPostForm'>
+					<input type="password" class='formCacheDeceiver'>
+					<input type="text" class="form-control" id="registerUsernameInput" placeholder="Your username here" onfocus="this.placeholder=''" onblur="this.placeholder='Your username here'">
+					<input type="password" class="form-control" id="registerPasswordInput" placeholder="Your password here" onfocus="this.placeholder=''" onblur="this.placeholder='Your password here'">
+					<input type="submit" name="" hidden> <!-- to submit form on enter -->
+				</form>
+
+				<button type="button" class="btn btn-block" id='registerButtonPost'>Continue</button>
+				
+				<div class='links'>
+					<a href="#">Recover an account</a><br/>
+					<a href="#" onclick="showLoginForm()">Sign in to your account</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- login box -->
+	<div class='d-flex justify-content-center'>
+		<div class="p-2"  id='loginWrapper'>
+			<h3>Login to your account</h3>
+			<div class='formWrapper'>
+				<form id='loginForm'>
+					<input type="text" class="form-control" id="loginUsernameInput" placeholder="Your username here" onfocus="this.placeholder=''" onblur="this.placeholder='Your username here'">
+					<input type="password" class="form-control" id="loginPasswordInput" placeholder="Your password here" onfocus="this.placeholder=''" onblur="this.placeholder='Your password here'">
+					<input type="submit" name="" hidden> <!-- to submit form on enter -->
+				</form>
+				<button type="button" class="btn btn-block" id='loginButton'>Login Now</button>
+
+				<div class='links'>
+					<a href="#">Forgot password?</a><br/>
+					<a href="#" onclick="showRegisterForm()">Create a new account</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,7 +1,13 @@
 $(document).ready(function(){
-	var musicPlayer = document.getElementById('musicPlayer');
+	var musicPlayer = document.getElementById('musicPlayer'); // the sticky music player
 	var offset = getPositionFromTop(musicPlayer) + $('#musicPlayer').height()+15;
 	var offsetRight = ($(window).width() - ($('#musicPlayer').offset().left + $('#musicPlayer').outerWidth()));
+
+
+  mainAudioPlayer = new Plyr('#mainAudioPlayer audio', {
+    controls: ['play', 'progress',],
+  });
+  mainAudioPlayer.volume = 1;
 
 	$(window).on('scroll', function(){
 		makeSticky(offset, offsetRight);
@@ -14,6 +20,7 @@ $(document).ready(function(){
 });
 
 var uploading = false;
+var mainAudioPlayer;
 
 function getPositionFromTop(element) {
   var yPosition = 0;
@@ -55,8 +62,17 @@ function makeSticky(offset, offsetRight){
 
 function playThisSong(sn){
   $('#musicPlayer .albumImg img').attr('src', 'thumbnail/'+sn+'/');
-  setDataSrc('play/'+sn);
-  musicPlayerPlay('play/'+sn);
+  mainAudioPlayer.source = {
+                            type: 'audio',
+                            title: 'GoMusix',
+                            sources: [
+                                {
+                                    src: 'play/'+sn,
+                                    type: 'audio/mp3',
+                                },
+                            ],
+                        };
+  mainAudioPlayer.play();
 }
 
 function uploadSongs(){

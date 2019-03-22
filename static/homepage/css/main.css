@@ -348,12 +348,25 @@ html {
 	height: 160px;
 }
 /* changing the media player */
-#musicPlayer .customMediaPlayer{
-	font-size: 10px !important;
-	background-color: #a2a2a2;
+#musicPlayer #mainAudioPlayer{
+	padding: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
 }
-#musicPlayer .playerProgressBar{
-	padding-left: 0px !important;
+#mainAudioPlayer .plyr__controls{
+	background-color: grey !important;
+	padding: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 5px;
+	color:white !important;
+}
+#mainAudioPlayer .plyr__control:hover{
+	background: none;
+}
+#mainAudioPlayer .plyr__control.plyr__tab-focus{
+	background: none!important;
+	box-shadow: none;
 }
 #musicPlayer .musicPlayerVolumeSlider{
 	background-color: #1cb3e4;

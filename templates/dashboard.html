@@ -37,13 +37,8 @@
 				<span class='albumImg'><img src="{% static 'dashboard/images/default-thumbnail.png' %}"></span>
 
 				<div class='musicPlayerMiscWrapper'>
-					<div class='customMediaPlayer d-flex' data-music-src="">
-						<div class="playerActionButton item p-2 musicPlayerPlayButton" onclick='playButtonToggle(this);'><span id='musicPlayerIcon' class="fas">&#xf04b;</span></div>
-						<div class="playerProgressBar item p-2 flex-grow-1"><span class="playerProgress"><span class="progressPercent"></span></span></div>
-
-						<audio id='musicPlayerHtmlMain' ontimeupdate="musicPlayerRunProgress(this);">
-							<source src="" type="audio/mpeg">
-						</audio>
+					<div id='mainAudioPlayer'>
+						<audio><source src="" type='audio/mp3' /></audio>
 					</div>
 					<span class='playAllButton'><span class="fas fa-forward"></span> Play All </span>
 				</div>

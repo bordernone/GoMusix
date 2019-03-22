@@ -3,7 +3,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 	<title>{{ title }}</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet"> 
@@ -32,9 +32,10 @@
 	
 	{% if request.path == '/dashboard/' %}
 	<!-- =========== For Dashboard =========== -->
-	<script type="text/javascript" src="{% static 'dashboard/js/manage.js' %}"></script>
-	<script type="text/javascript" src="{% static 'dashboard/js/html5musicplayer.js' %}"></script>
-	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/html5musicplayer.css' %}">
+	<script src="https://cdn.plyr.io/3.5.2/plyr.polyfilled.js"></script>
+	<link rel="stylesheet" href="https://cdn.plyr.io/3.5.2/plyr.css" />
+
+  	<script type="text/javascript" src="{% static 'dashboard/js/manage.js' %}"></script>
 	<!-- ========== For settings page =========-->
 	<script type="text/javascript" src="{% static 'accountsetting/js/accountsetting.js' %}"></script>
 	{% endif %}

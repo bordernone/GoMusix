@@ -120,6 +120,7 @@ def playMusic(request, sn):
 
 			response = HttpResponse()
 			response.write(openFile.read())
+			response['Accept-Ranges'] = 'bytes';
 			response['Content-type'] = mimetype
 			response['Content-length'] = os.path.getsize(completePath)
 			return response

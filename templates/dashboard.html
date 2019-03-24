@@ -12,7 +12,7 @@
 			<div class='musicsList' onClick='playThisSong({{ sn }});'>
 				<span class='albumImg'>
 					<img src="thumbnail/{{ sn }}/">
-					<span class="fas" id='dashboardSongDeleteButton' onClick="deleteThisSong(event,{{ sn }});">&#xf2ed;</span>
+					<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
 				</span>
 				<span class='title'>
 					{{ title }}
@@ -38,21 +38,41 @@
 
 				<div class='musicPlayerMiscWrapper'>
 					<div id='mainAudioPlayer'>
-						<audio><source src="" type='audio/mp3' /></audio>
+						<audio><source src="https://cdn.plyr.io/static/blank.mp4" type='audio/mp3' /></audio>
 					</div>
 					<span class='playAllButton'><span class="fas fa-forward"></span> Play All </span>
 				</div>
 
 				<!-- Volume Slider -->
 				<div class='musicPlayerVolumeManager'>
-					<span class="musicPlayerVolumeWrapper">
-						<span class="musicPlayerVolumeSlider"></span>
-					</span>	
+					<div id='mainAudioPlayerVolume'></div>
 				</div>
 			</div>
 		</div>
 		<!-- ================== Action Sidebar Ends=============== -->
 	</div>
+</div>
+
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade " id="deleteConfirmationModal">
+<div class="modal-dialog modal-sm">
+  <div class="modal-content">
+  
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h4 class="modal-title">Delete this song?</h4>
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    
+    <!-- Modal body -->
+    <div class="modal-body d-flex justify-content-center">
+    	<button type="button" class="btn btn-danger p-2" id='songDeleteConfirmButton' data-song-id='' onclick='deleteThisSong(event, $("#songDeleteConfirmButton").attr("data-song-id")); $("#deleteConfirmationModal").modal("hide");'>Delete</button>
+        <button type="button" class="btn btn-primary p-2" data-dismiss="modal">Close</button>
+    </div>
+    
+  </div>
+</div>
 </div>
 
 

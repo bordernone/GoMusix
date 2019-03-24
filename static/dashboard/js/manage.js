@@ -7,8 +7,22 @@ $(document).ready(function(){
   mainAudioPlayer = new Plyr('#mainAudioPlayer audio', {
     controls: ['play', 'progress',],
   });
-  mainAudioPlayer.volume = 1;
 
+  mainAudioPlayerVolume = $('#mainAudioPlayerVolume');
+  mainAudioPlayerVolume.slider({
+    orientation: "horizontal",
+      range: "min",
+      max: 1,
+      value: mainAudioPlayer.volume,
+      step:0.1,
+      slide: refreshVolumeSlider,
+      change: refreshVolumeSlider,
+  });
+
+  $(window).on('resize', function(){
+    offset = getPositionFromTop(musicPlayer) + $('#musicPlayer').height()+15;
+    offsetRight = ($(window).width() - ($('#musicPlayer').offset().left + $('#musicPlayer').outerWidth()));
+  });
 	$(window).on('scroll', function(){
 		makeSticky(offset, offsetRight);
 	});
@@ -17,10 +31,12 @@ $(document).ready(function(){
   $('#songsInputField').change(function(){
     uploadSongs();
   });
+  
 });
 
 var uploading = false;
 var mainAudioPlayer;
+var mainAudioPlayerVolume;
 
 function getPositionFromTop(element) {
   var yPosition = 0;
@@ -180,4 +196,13 @@ function navigateToMyMusics(e){
       NProgress.done();
     }
   });
+}
+
+function refreshVolumeSlider(){
+  mainAudioPlayer.volume = mainAudioPlayerVolume.slider("value");
+}
+
+function deleteIconClick(event){
+  event.stopPropagation();
+  $('#deleteConfirmationModal').modal('toggle');
 }

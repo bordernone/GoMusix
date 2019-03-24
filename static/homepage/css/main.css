@@ -345,7 +345,7 @@ html {
 	font-size: 18px;
 }
 .musicPlayerMiscWrapper{
-	height: 160px;
+	height: 175px;
 }
 /* changing the media player */
 #musicPlayer #mainAudioPlayer{
@@ -368,12 +368,23 @@ html {
 	background: none!important;
 	box-shadow: none;
 }
-#musicPlayer .musicPlayerVolumeSlider{
+#mainAudioPlayerVolume .ui-slider-range{
 	background-color: #1cb3e4;
+	border-radius: 8px;
 }
 #musicPlayer .musicPlayerVolumeManager{
 	padding-left: 12px;
 	padding-right: 12px;
+}
+#mainAudioPlayerVolume.ui-slider{
+	border-radius: 8px;
+}
+#mainAudioPlayerVolume.ui-slider .ui-slider-handle{
+	border-radius: 50%;
+	opacity: 0;
+}
+#mainAudioPlayerVolume.ui-slider:hover .ui-slider-handle{
+	opacity: 1;
 }
 /* account setting */
 #accountSettingWrapper{

@@ -89,6 +89,7 @@ function playThisSong(sn){
                             ],
                         };
   mainAudioPlayer.play();
+  $('#mainAudioPlayer .plyr').focus();
 }
 
 function uploadSongs(){

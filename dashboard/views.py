@@ -23,10 +23,38 @@ logger = logging.getLogger(__name__)
 def dashboard(request):
 	if request.user.is_authenticated:
 		username = request.user.username
+		sortby = 'sn'
+		if 'sort' in request.GET:
+			sortby = request.GET['sort']
+			if sortby not in ['sn', 'alphabetically', 'popularity']:
+				sortby = 'sn'
+
+		# based on the category passed
 		songsTitle = []
 		songsArtist = []
 		songsSn = []
-		userSongs = UserSong.objects.filter(username=username).order_by("-sn")
+		if sortby == 'sn':
+			userSongs = UserSong.objects.filter(username=username).order_by("-sn")
+		elif sortby == 'popularity':
+			userSongs = UserSong.objects.filter(username=username).order_by("-timesplayed")
+		else:
+			userSongs = UserSong.objects.filter(username=username)
+		sn = 0
+		for eachRow in userSongs:
+			sn = eachRow.sn 
+			songsSn.append(sn)
+			songsTitle.append(getTitle(sn))
+			songsArtist.append(getArtist(sn))
+		if sortby == 'alphabetically':
+			songsDetail = sorted(zip(songsSn, songsTitle, songsArtist), key=lambda x: x[1])
+		else:
+			songsDetail = zip(songsSn, songsTitle, songsArtist)
+
+		# dashboard most played songs
+		songsTitle = []
+		songsArtist = []
+		songsSn = []
+		userSongs = UserSong.objects.filter(username=username).order_by("-timesplayed")[:5]
 		sn = 0
 		for eachRow in userSongs:
 			sn = eachRow.sn 
@@ -34,8 +62,8 @@ def dashboard(request):
 			songsTitle.append(getTitle(sn))
 			songsArtist.append(getArtist(sn))
 
-		songsDetail = zip(songsSn, songsTitle, songsArtist)
-		args = {'title':'My music | GoMusix', 'songs':songsDetail}
+		mostPlayedSongs = zip(songsSn, songsTitle, songsArtist)
+		args = {'title':'My music | GoMusix', 'songs':songsDetail, 'mostPlayedSongs':mostPlayedSongs}
 
 		return render(request, 'dashboard.html', args)
 	else:

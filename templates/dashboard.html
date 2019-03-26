@@ -6,22 +6,59 @@
 
 <div id='dashboardWrapper' class='container-fluid'>
 	<div class="row">
-		<!-- ======= Musics Grid ========= -->
-		<div class="col-sm-8" id='musicsWrapper'>
-			{% for sn, title, artist in songs %}
-			<div class='musicsList' onClick='playThisSong({{ sn }});'>
-				<span class='albumImg'>
-					<img src="thumbnail/{{ sn }}/">
-					<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
-				</span>
-				<span class='title'>
-					{{ title }}
-				</span>
-				<span class='artist'>
-					{{ artist }}
-				</span>
+		<div class='col-sm-8'>
+			<div class="allMusicsHere">
+				<!--======== display most played songs here============-->
+				<h3 class="catHeading"><span class='fas fa-heart'></span>&nbsp;Most Played</h3>
+				<div class="catMostPlayed" id='catMostPlayed'>
+					{% for sn, title, artist in mostPlayedSongs %}
+					<div class='musicsList' onClick='playThisSong({{ sn }});'>
+						<span class='albumImg'>
+							<img src="thumbnail/{{ sn }}/">
+							<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
+						</span>
+						<span class='title'>
+							{{ title }}
+						</span>
+						<span class='artist'>
+							{{ artist }}
+						</span>
+					</div>
+					{% endfor %}
+				</div>
+
+
+				<!-- ======= All Musics Grid ========= -->
+				<div class="d-flex flex-row allSongsCat">
+					<div class="p-2">
+						<h3 class="catHeading"><span class='fas fa-music'></span>&nbsp;<span id='allSongsCatTitle'>Recently Added</span>&nbsp;<span class="fas fa-angle-down"></span>&nbsp;</h3>
+						<div class="form-group">
+					      	<select class="form-control" id="sortbylist" name="sortbylist">
+					      		<option value='0'>Recently Added</option>
+						        <option value='1'>Most played</option>
+						        <option value="2">Alphabetically</option>
+					      	</select>
+					    </div>
+					</div>
+				</div>
+
+				<div id='musicsWrapper'>
+					{% for sn, title, artist in songs %}
+					<div class='musicsList' onClick='playThisSong({{ sn }});'>
+						<span class='albumImg'>
+							<img src="thumbnail/{{ sn }}/">
+							<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
+						</span>
+						<span class='title'>
+							{{ title }}
+						</span>
+						<span class='artist'>
+							{{ artist }}
+						</span>
+					</div>
+					{% endfor %}
+				</div>
 			</div>
-			{% endfor %}
 		</div>
 
 		<!-- ======== Action Sidebar ======= -->
@@ -67,7 +104,7 @@
     
     <!-- Modal body -->
     <div class="modal-body d-flex justify-content-center">
-    	<button type="button" class="btn btn-danger p-2" id='songDeleteConfirmButton' data-song-id='' onclick='deleteThisSong(event, $("#songDeleteConfirmButton").attr("data-song-id")); $("#deleteConfirmationModal").modal("hide");'>Delete</button>
+    	<button type="button" class="btn btn-danger p-2" id='songDeleteConfirmButton' data-song-id='' onclick='deleteThisSong(event, $("#songDeleteConfirmButton").attr("data-song-id")); $("#deleteConfirmationModal").modal("hide");'>Delete</button>&#160;&#160;
         <button type="button" class="btn btn-primary p-2" data-dismiss="modal">Close</button>
     </div>
     

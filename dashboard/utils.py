@@ -2,7 +2,7 @@ import os.path
 from GoMusix.settings import MUSICFILES_DIR
 from .models import UserSong
 import json
-import mutagen
+from mutagen import mutagen
 from mutagen.mp3 import MP3
 from mutagen.easyid3 import EasyID3
 from mutagen.id3 import ID3
@@ -12,6 +12,13 @@ from mutagen.oggflac import OggFLAC
 from mutagen.oggopus import OggOpus
 from mutagen.oggspeex import OggSpeex
 from mutagen.oggtheora import OggTheora
+from django.conf import settings
+import logging
+
+
+#logger for logging errors
+logger = logging.getLogger(__name__)
+
 
 # songs path
 songsPath = MUSICFILES_DIR
@@ -102,7 +109,7 @@ def getThumbnail(sn):
 		return 'No Thumbnail'
 
 def isSongValid(file):
-	acceptedMime = ['audio/mpeg', 'audio/mpeg3', 'audio/x-mpeg-3', 'audio/ogg', 'application/ogg', 'audio/x-ogg', 'application/x-ogg', 'video/ogg', 'audio/wav', 'audio/x-wav', 'audio/wave', 'audio/x-pn-wav']
+	acceptedMime = ['audio/mp3', 'audio/mpeg', 'audio/mpeg3', 'audio/x-mpeg-3', 'audio/ogg', 'application/ogg', 'audio/x-ogg', 'application/x-ogg', 'video/ogg', 'audio/wav', 'audio/x-wav', 'audio/wave', 'audio/x-pn-wav']
 	type = "none"
 	if file:
 		if file._size > 10*1024*1024:
@@ -111,6 +118,7 @@ def isSongValid(file):
 			if settings.DEBUG:
 				return ('MIMETYPE: ' + file.content_type + ' Not a mp3, ogg, or wav file')
 			else:
+				logger.error('MIMETYPE: ' + file.content_type + ' Not a mp3, ogg, or wav file')
 				return ('It is not a mp3, ogg, or wav file')
 
 		try:

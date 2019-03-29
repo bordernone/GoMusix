@@ -2,7 +2,7 @@ import os.path
 from GoMusix.settings import MUSICFILES_DIR
 from .models import UserSong
 import json
-from mutagen import mutagen
+import mutagen
 from mutagen.mp3 import MP3
 from mutagen.easyid3 import EasyID3
 from mutagen.id3 import ID3

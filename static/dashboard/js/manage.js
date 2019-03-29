@@ -46,6 +46,7 @@ var uploading = false;
 var mainAudioPlayer;
 var mainAudioPlayerVolume;
 var currentCategory;
+var currentPageId = 1;
 
 function getPositionFromTop(element) {
 	var yPosition = 0;
@@ -137,6 +138,7 @@ function uploadSongs(){
 			}
 		},
 		success: function(res) {
+			resetCurrentPageId();
 			$('#allSongsCatTitle').html('Recently Added');
 			$('#sortbylist').val('0');
 		  	$('#musicsWrapper').load('/dashboard/ #musicsWrapper div');
@@ -178,16 +180,8 @@ function deleteThisSong(event,sn){
 		// stopping progressbar
 		NProgress.done();
 	  } else {
-	  	var selectedCat = $('#sortbylist').val();
-		var sortbyval;
-		if (selectedCat == '0'){
-			sortbyval = 'sn';
-		} else if (selectedCat == '1') {
-			sortbyval = 'popularity';
-		} else if (selectedCat == '2') {
-			sortbyval = 'alphabetically';
-		}
-		var url = '/dashboard/?sort=' + sortbyval;
+		var sortbyval = getSortedBy();
+		var url = '/dashboard/?sort=' + sortbyval + '&page=' + currentPageId;
 		$('#musicsWrapper').load(url + ' #musicsWrapper div', function(response, status){
 		  // stopping progressbar
 		  NProgress.done();
@@ -200,9 +194,30 @@ function deleteThisSong(event,sn){
   });
 }
 
+function loadmoremusics(_this){
+	NProgress.start();
+	$(_this).attr('disabled', true);
+	var currentSortedState = getSortedBy();
+	currentPageId = currentPageId + 1;
+	var url = '/dashboard/?page=' + currentPageId + '&sort=' + currentSortedState;
+
+	$('#musicsWrapper').load(url + ' #musicsWrapper div', function(response, status, xhr){
+		if (status=='success'){
+			// check if no more songs
+			if ($("#musicsWrapper > div").length < currentPageId * 20){
+				$(_this).html('No more songs');
+			} else {
+				$(_this).attr('disabled', false);
+			}
+			NProgress.done();
+		}
+	});
+}
+
 function navigateToSettings(e){
 	e.preventDefault();
 	NProgress.start();
+	resetCurrentPageId();
 	$('#dashboardWrapper .row .col-sm-8').load('/settings/ #accountSettingWrapper', function(response, status, xhr){
 		if (status=='success'){
 			NProgress.done();
@@ -213,6 +228,7 @@ function navigateToSettings(e){
 function navigateToMyMusics(e){
 	e.preventDefault();
 	NProgress.start();
+	resetCurrentPageId();
 	$('#dashboardWrapper .row .col-sm-8').load('/dashboard/ #dashboardWrapper .allMusicsHere',  function(response, status, xhr){
 		if (status=='success'){
 		  	NProgress.done();
@@ -249,10 +265,27 @@ function updatePseudoItem(_this){
 
 function sortby(value){
 	NProgress.start();
-	var url = '/dashboard/?sort=' + value;
+	var url = '/dashboard/?sort=' + value + '&page=' + currentPageId;
 	$('#dashboardWrapper .row .col-sm-8 #musicsWrapper').load(url+' #musicsWrapper div',  function(response, status, xhr){
 		if (status=='success'){
 		  	NProgress.done();
 		}
 	});
+}
+
+function getSortedBy(){
+	var selectedCat = $('#sortbylist').val();
+	var sortbyval;
+	if (selectedCat == '0'){
+		sortbyval = 'sn';
+	} else if (selectedCat == '1') {
+		sortbyval = 'popularity';
+	} else if (selectedCat == '2') {
+		sortbyval = 'alphabetically';
+	}
+	return sortbyval;
+}
+
+function resetCurrentPageId(){
+	currentPageId = 1;
 }

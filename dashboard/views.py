@@ -24,6 +24,12 @@ def dashboard(request):
 	if request.user.is_authenticated:
 		username = request.user.username
 		sortby = 'sn'
+
+		# if pagination is enabled
+		pageId = int(request.GET['page']) if 'page' in request.GET else 1
+		songsUpto = pageId * 20
+
+		# check if filter is applied
 		if 'sort' in request.GET:
 			sortby = request.GET['sort']
 			if sortby not in ['sn', 'alphabetically', 'popularity']:
@@ -34,11 +40,11 @@ def dashboard(request):
 		songsArtist = []
 		songsSn = []
 		if sortby == 'sn':
-			userSongs = UserSong.objects.filter(username=username).order_by("-sn")
+			userSongs = UserSong.objects.filter(username=username).order_by("-sn")[:songsUpto]
 		elif sortby == 'popularity':
-			userSongs = UserSong.objects.filter(username=username).order_by("-timesplayed")
+			userSongs = UserSong.objects.filter(username=username).order_by("-timesplayed")[:songsUpto]
 		else:
-			userSongs = UserSong.objects.filter(username=username)
+			userSongs = UserSong.objects.filter(username=username)[:songsUpto]
 		sn = 0
 		for eachRow in userSongs:
 			sn = eachRow.sn 
@@ -151,6 +157,13 @@ def playMusic(request, sn):
 			response['Accept-Ranges'] = 'bytes';
 			response['Content-type'] = mimetype
 			response['Content-length'] = os.path.getsize(completePath)
+
+			# response is ready. Update number of times this music has been played before returning response
+			thisSong = UserSong.objects.all().filter(username=username, sn=sn)[0]
+			thisSong.timesplayed = thisSong.timesplayed + 1;
+			thisSong.save()
+
+			#return response
 			return response
 		else:
 			if settings.DEBUG:

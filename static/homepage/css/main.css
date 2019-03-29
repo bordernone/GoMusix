@@ -276,6 +276,11 @@ html {
 	color: #848484;
 	font-weight: bold;
 }
+.loadMoreButton{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 #actionsWrapper{
 	padding-left: 50px;
 	padding-right: 50px;

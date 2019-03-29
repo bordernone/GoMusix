@@ -108,7 +108,10 @@ def isSongValid(file):
 		if file._size > 10*1024*1024:
 			return ('File too large. Max Limit: 10MB')
 		elif not file.content_type in acceptedMime:
-			return ('It is not a mp3, ogg, or wav file')
+			if settings.DEBUG:
+				return ('MIMETYPE: ' + file.content_type + ' Not a mp3, ogg, or wav file')
+			else:
+				return ('It is not a mp3, ogg, or wav file')
 
 		try:
 			OggVorbis(file.temporary_file_path())

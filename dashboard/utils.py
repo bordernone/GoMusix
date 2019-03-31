@@ -46,7 +46,7 @@ def getTitle(sn):
 		audio = mutagen.File(filePath, easy=True)
 
 	if audio is None:
-		return 'Unknown filename'
+		return getOriginalName(sn)
 
 	if 'title' not in audio:
 		if getOriginalName(sn) != False:

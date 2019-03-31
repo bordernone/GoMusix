@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from django.conf import settings
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from homepage.utils import confirmPassword
@@ -33,7 +34,13 @@ def changePassword(request):
 				currentUser = User.objects.get(username__exact=username)
 				currentUser.set_password(newPassword)
 				currentUser.save()
-				return HttpResponse('success')
+
+				user = authenticate(request, username=username, password=newPassword)
+				if user is not None:
+					login(request, user)
+					return HttpResponse('success')
+				else:
+					return HttpResponse('An error has occured')
 			else:
 				return HttpResponse(isPasswordValid)
 

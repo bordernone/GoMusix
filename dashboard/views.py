@@ -154,13 +154,13 @@ def playMusic(request, sn):
 
 			response = HttpResponse()
 			response.write(openFile.read())
-			response['Accept-Ranges'] = 'bytes';
+			response['Accept-Ranges'] = 'bytes'
 			response['Content-type'] = mimetype
 			response['Content-length'] = os.path.getsize(completePath)
 
 			# response is ready. Update number of times this music has been played before returning response
 			thisSong = UserSong.objects.all().filter(username=username, sn=sn)[0]
-			thisSong.timesplayed = thisSong.timesplayed + 1;
+			thisSong.timesplayed = thisSong.timesplayed + 1
 			thisSong.save()
 
 			#return response

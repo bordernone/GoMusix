@@ -33,7 +33,7 @@ def handle_uploaded_file(f, name):
 		destination.close()
 		return True
 	except Exception as e:
-		return e;
+		return e
 
 def getTitle(sn):
 	filePath = MUSICFILES_DIR+str(sn)+'.tmp'

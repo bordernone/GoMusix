@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('homepage.urls')), # homepage
     path('', include('dashboard.urls')), # dashboard
     path('', include('accountsetting.urls')), # account setting
+    path('api/', include('api.urls')), #api
 ]

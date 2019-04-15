@@ -25,7 +25,7 @@ SECRET_KEY = 'mj4*bnswpvqpt02s853+&hlqa#)ln$xnzg%01_8oqut3d!3v)r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gomusix.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage.apps.HomepageConfig', #homepage
     'dashboard.apps.DashboardConfig', #dashboard
+    'api.apps.ApiConfig', #api
 ]
 
 MIDDLEWARE = [

@@ -25,7 +25,7 @@ SECRET_KEY = 'mj4*bnswpvqpt02s853+&hlqa#)ln$xnzg%01_8oqut3d!3v)r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gomusix.herokuapp.com']
+ALLOWED_HOSTS = ['gomusix.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

@@ -89,6 +89,20 @@ def getMimeType(sn):
 	else:
 		return 'Unknown mimetype'
 
+def getExtension(sn):
+	mimeType = getMimeType(sn)
+	mp3MimeType = ['audio/mp3', 'audio/mpeg', 'audio/mpeg3', 'audio/x-mpeg-3']
+	oggMimeType = ['audio/ogg', 'application/ogg', 'audio/x-ogg', 'application/x-ogg', 'video/ogg']
+	wavMimeType = ['audio/wav', 'audio/x-wav', 'audio/wave', 'audio/x-pn-wav']
+	if mimeType in mp3MimeType:
+		return 'mp3'
+	elif mimeType in oggMimeType:
+		return 'ogg'
+	elif mimeType in wavMimeType:
+		return 'wav'
+	else:
+		return 'unknown extension'
+
 def getThumbnail(sn):
 	filePath = MUSICFILES_DIR+str(sn)+'.tmp'
 	if isAMusicFile(filePath) != True:

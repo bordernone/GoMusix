@@ -4,11 +4,12 @@ from django.contrib.auth import authenticate, login
 from django.conf import settings
 from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.clickjacking import xframe_options_exempt
 from .models import apiKeys
 from .utils import verifyToken
 from dashboard.models import UserSong
 from GoMusix.settings import MUSICFILES_DIR
-from dashboard.utils import getTitle, getArtist, getThumbnail, getMimeType
+from dashboard.utils import getTitle, getArtist, getThumbnail, getMimeType, getExtension
 import uuid
 import json
 import os
@@ -82,7 +83,7 @@ def userSongsDetail(request):
     else:
         return JsonResponse({'error': 'request must be POST'})
 
-#display songs (title, artist, sn)
+#display songs (title, artist, sn, extension)
 @csrf_exempt
 def songsDetailsBasic(request):
     if request.method == 'POST':
@@ -95,10 +96,12 @@ def songsDetailsBasic(request):
                 songsList = []
                 temp = []
                 for song in allSongs:
-                    temp = {
+                    if getExtension(song.sn) != 'unknown extension':
+                        temp = {
                         "sn": song.sn,
                         "title": getTitle(song.sn),
                         "artist": getArtist(song.sn),
+                        "extension": getExtension(song.sn),
                     }
                     temp = json.loads(json.dumps(temp))
                     songsList.append(temp)
@@ -111,6 +114,7 @@ def songsDetailsBasic(request):
         return JsonResponse({'error': 'request must be POST'})
 
 @csrf_exempt
+@xframe_options_exempt
 def songsThumbnail(request):
     if 'username' in request.GET and 'token' in request.GET and 'sn' in request.GET:
         username = request.GET['username']
@@ -143,6 +147,7 @@ def songsThumbnail(request):
         return Http404
 
 @csrf_exempt
+@xframe_options_exempt
 def playSong(request):
     if 'username' in request.GET and 'token' in request.GET and 'sn' in request.GET:
         username = request.GET['username']
@@ -155,7 +160,7 @@ def playSong(request):
 
                 fileName = sn + '.tmp'
                 completePath = MUSICFILES_DIR + fileName
-
+                fileSize = os.path.getsize(completePath)
                 openFile = open(completePath, 'rb')
 
                 response = HttpResponse()
@@ -163,6 +168,8 @@ def playSong(request):
                 response['Accept-Ranges'] = 'bytes'
                 response['Content-type'] = mimetype
                 response['Content-length'] = os.path.getsize(completePath)
+                response['Content-Range'] = 'bytes 0-'+str(fileSize)+'/'+str(fileSize)
+                #response['Connection']='keep-alive'
 
                 # response is ready. Update number of times this music has been played before returning response
                 thisSong = UserSong.objects.all().filter(username=username, sn=sn)[0]

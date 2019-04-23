@@ -12,7 +12,7 @@ html {
 }
 @font-face {
     font-family: "Theme";
-    src: url(/static/homepage/fonts/segoesc.ttf) format("truetype");
+    src: url(/static/homepage/fonts/SegoeScript.ttf) format("truetype");
 }
 #bodyWrapper{
 	min-height: 100%;

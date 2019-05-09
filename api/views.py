@@ -10,6 +10,7 @@ from .utils import verifyToken
 from dashboard.models import UserSong
 from GoMusix.settings import MUSICFILES_DIR
 from dashboard.utils import getTitle, getArtist, getThumbnail, getMimeType, getExtension
+from homepage.utils import confirmEmailAddress, confirmUsername, confirmPassword
 import uuid
 import json
 import os
@@ -184,3 +185,28 @@ def playSong(request):
             return Http404
     else:
         return Http404
+
+@csrf_exempt
+def signup(request):
+    if not 'username' in request.POST:return JsonResponse({'errorMsg':'Username is required'})
+    if not 'password' in request.POST:return JsonResponse({'errorMsg':'Password is required'})
+    if not 'email' in request.POST:return JsonResponse({'errorMsg':'Email is required'})
+    username = request.POST['username']
+    email = request.POST['email']
+    password = request.POST['password']
+    verifyEmail = confirmEmailAddress(email)
+    verifyUsername = confirmUsername(username)
+    verifyPassword = confirmPassword(password)
+
+    if verifyEmail=='Success':
+        if verifyUsername=='Success':
+            if verifyPassword=='Success':
+                query = User.objects.create_user(username=username, password=password, email=email)
+                query.save()
+                return JsonResponse({'successMsg': 'Registration Complete'})
+            else:
+                return JsonResponse({'errorMsg':verifyPassword})
+        else:
+            return JsonResponse({'errorMsg':verifyUsername})
+    else:
+        return JsonResponse({'errorMsg':verifyEmail})

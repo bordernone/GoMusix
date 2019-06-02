@@ -86,11 +86,16 @@ function makeSticky(offset, offsetRight){
 	}
 }
 
-function playThisSong(sn){
+function playThisSong(sn, title=null){
+	if (title==null){
+		title = 'GoMusix';
+	} else {
+		setMusicPlayerDisplayTitle(' '+title);
+	}
   	$('#musicPlayer .albumImg img').attr('src', 'thumbnail/'+sn+'/');
   	mainAudioPlayer.source = {
 							type: 'audio',
-							title: 'GoMusix',
+							title: title,
 							sources: [
 								{
 									src: 'play/'+sn,
@@ -100,6 +105,10 @@ function playThisSong(sn){
 						};
   	mainAudioPlayer.play();
   	$('#mainAudioPlayer .plyr').focus();
+}
+
+function setMusicPlayerDisplayTitle(title){
+	$('#songTitle').html(title);
 }
 
 function uploadSongs(){

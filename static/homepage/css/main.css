@@ -1,47 +1,58 @@
-html,body{
+html, body {
 	min-height: 100%!important;
 	background-color: #f6f6f6 !important;
 }
-body{
+
+body {
 	position: relative;
 	padding-bottom: 50px;
 }
+
 html {
-  height: 100%;
-  box-sizing: border-box;
+	height: 100%;
+	box-sizing: border-box;
 }
+
 @font-face {
-    font-family: "Theme";
-    src: url(/static/homepage/fonts/SegoeScript.ttf) format("truetype");
+	font-family: "Theme";
+	src: url(/static/homepage/fonts/SegoeScript.ttf) format("truetype");
 }
-#bodyWrapper{
+
+#bodyWrapper {
 	min-height: 100%;
 	width: 100%;
 	padding: 0px;
 	background-color: #f6f6f6;
 }
-.formCacheDeceiver{
+
+.formCacheDeceiver {
 	display: none;
 }
+
 /* header */
-#headerWrapper{
+
+#headerWrapper {
 	padding-left: 50px;
 	padding-right: 50px;
 	padding-top: 0px;
 	padding-bottom: 0px;
 	height: auto;
 }
-#headerWrapper .p-2{
+
+#headerWrapper .p-2 {
 	padding-top: 0px!important;
 }
-#headerWrapper img.logo{
+
+#headerWrapper img.logo {
 	max-width: 150px;
 }
-#headerWrapper .menu{
-	padding-top:20px;
+
+#headerWrapper .menu {
+	padding-top: 20px;
 	padding-right: 0px;
 }
-#headerWrapper .menu a{
+
+#headerWrapper .menu a {
 	padding-left: 15px;
 	padding-right: 15px;
 	text-align: center;
@@ -49,73 +60,91 @@ html {
 	font-size: 18px;
 	font-weight: 500;
 }
-#headerWrapper .menu span{
+
+#headerWrapper .menu span {
 	width: 100%;
 	display: block;
 	font-size: 22px;
 }
-#notificationWrapper{
+
+#notificationWrapper {
 	display: none;
 }
+
 /* Homepage */
-#mainWrapperHomePage{
+
+#mainWrapperHomePage {
 	padding-top: 40px;
 }
-#mainWrapperHomePage h1{
+
+#mainWrapperHomePage h1 {
 	font-family: "Theme";
 	font-size: 70px;
 	text-align: center;
 	color: #1c8adb;
 }
 
-#registerWrapper h3{
+#registerWrapper h3 {
 	padding-top: 20px;
 	font-family: "Theme";
 	color: #1c8adb;
 	text-align: center;
 	font-size: 30px;
 }
-#registerWrapper input{
-	border:none!important;
+
+#registerWrapper input {
+	border: none!important;
 	background-color: #9ed3d9;
 	text-align: center;
 	color: white;
-	margin:5px;
+	margin: 5px;
 }
-#registerWrapper input:focus{
-	border:none!important;
+
+#registerWrapper input:focus {
+	border: none!important;
 }
-#registerWrapper input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+
+#registerWrapper input::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: white;
-  	opacity: 1; /* Firefox */
+	opacity: 1;
+	/* Firefox */
 }
-#registerWrapper input::-ms-input-placeholder { /* Internet Explorer 10-11 */
+
+#registerWrapper input::-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
 	color: white;
 }
-#registerWrapper input::-ms-input-placeholder { /* Microsoft Edge */
+
+#registerWrapper input::-ms-input-placeholder {
+	/* Microsoft Edge */
 	color: white;
 }
-#registerWrapper #registerButtonPre,#registerButtonPost{
+
+#registerWrapper #registerButtonPre, #registerButtonPost {
 	margin-top: 20px;
 	background-color: #9ed3d9;
-	border:none;
-	color:#008999;
-	-webkit-box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
+	border: none;
+	color: #008999;
+	-webkit-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
 	margin-left: 5px;
 	margin-right: 5px;
 	font-weight: bold;
 }
-#registerWrapper #registerButtonPre:active, #registerButtonPost:active{
+
+#registerWrapper #registerButtonPre:active, #registerButtonPost:active {
 	box-shadow: none;
 }
-#registerWrapper .links{
+
+#registerWrapper .links {
 	margin-top: 8px;
 	display: block;
 	line-height: 1;
 }
-#registerWrapper .links a{
+
+#registerWrapper .links a {
 	float: right;
 	text-align: right;
 	padding: 0px;
@@ -124,69 +153,87 @@ html {
 	text-decoration: underline;
 	color: #757575;
 }
-#registerWrapper .links a:hover{
-	color:#008999;
+
+#registerWrapper .links a:hover {
+	color: #008999;
 }
-.formWrapperRegisterPre{
+
+.formWrapperRegisterPre {
 	width: 90%;
 	margin-left: 5%;
 }
-.formWrapperRegisterPost{
+
+.formWrapperRegisterPost {
 	width: 90%;
 	margin-left: 5%;
 	display: none;
 }
-#loginWrapper{
+
+#loginWrapper {
 	display: none;
 }
-#loginWrapper h3{
+
+#loginWrapper h3 {
 	padding-top: 20px;
 	font-family: "Theme";
 	color: #1c8adb;
 	text-align: center;
 	font-size: 30px;
 }
-#loginWrapper input{
-	border:none!important;
+
+#loginWrapper input {
+	border: none!important;
 	background-color: #9ed3d9;
 	text-align: center;
 	color: white;
-	margin-bottom:5px;
+	margin-bottom: 5px;
 	margin-top: 15px;
 }
-#loginWrapper input:focus{
-	border:none!important;
+
+#loginWrapper input:focus {
+	border: none!important;
 }
-#loginWrapper input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+
+#loginWrapper input::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: white;
-  	opacity: 1; /* Firefox */
+	opacity: 1;
+	/* Firefox */
 }
-#loginWrapper input::-ms-input-placeholder { /* Internet Explorer 10-11 */
+
+#loginWrapper input::-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
 	color: white;
 }
-#loginWrapper input::-ms-input-placeholder { /* Microsoft Edge */
+
+#loginWrapper input::-ms-input-placeholder {
+	/* Microsoft Edge */
 	color: white;
 }
-#loginWrapper #loginButton{
+
+#loginWrapper #loginButton {
 	margin-top: 25px;
 	background-color: #9ed3d9;
-	border:none;
-	color:#008999;
-	-webkit-box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
+	border: none;
+	color: #008999;
+	-webkit-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
 	font-weight: bold;
 }
-#loginWrapper #loginButton:active{
+
+#loginWrapper #loginButton:active {
 	box-shadow: none;
 }
-#loginWrapper .links{
+
+#loginWrapper .links {
 	margin-top: 8px;
 	display: block;
 	white-space: nowrap;
 	line-height: 1;
 }
-#loginWrapper .links a{
+
+#loginWrapper .links a {
 	float: right;
 	text-align: right;
 	padding: 0px;
@@ -195,65 +242,156 @@ html {
 	text-decoration: underline;
 	color: #757575;
 }
-#loginWrapper .links a:hover{
-	color:#008999;
+
+#loginWrapper .links a:hover {
+	color: #008999;
 }
-.formWrapper{
+
+/* password recovery */
+
+#recoveryWrapper {
+	display: none;
+}
+
+#recoveryWrapper h3 {
+	padding-top: 20px;
+	font-family: "Theme";
+	color: #1c8adb;
+	text-align: center;
+	font-size: 30px;
+}
+
+#recoveryWrapper input {
+	border: none!important;
+	background-color: #9ed3d9;
+	text-align: center;
+	color: white;
+	margin-bottom: 5px;
+	margin-top: 15px;
+}
+
+#recoveryWrapper input:focus {
+	border: none!important;
+}
+
+#recoveryWrapper input::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: white;
+	opacity: 1;
+	/* Firefox */
+}
+
+#recoveryWrapper input::-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: white;
+}
+
+#recoveryWrapper input::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: white;
+}
+
+#recoveryWrapper #recoverButton {
+	margin-top: 25px;
+	background-color: #9ed3d9;
+	border: none;
+	color: #008999;
+	-webkit-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
+	font-weight: bold;
+}
+
+#recoveryWrapper #recover:active {
+	box-shadow: none;
+}
+
+#recoveryWrapper .links {
+	margin-top: 8px;
+	display: block;
+	white-space: nowrap;
+	line-height: 1;
+}
+
+#recoveryWrapper .links a {
+	float: right;
+	text-align: right;
+	padding: 0px;
+	margin: 0px;
+	font-size: 12px;
+	text-decoration: underline;
+	color: #757575;
+}
+
+#recoveryWrapper .links a:hover {
+	color: #008999;
+}
+
+.formWrapper {
 	width: 80%;
 	margin-left: 10%;
 }
+
 /* dashboard */
-#dashboardWrapper{
+
+#dashboardWrapper {
 	padding-top: 80px;
 	padding-left: 65px;
 	padding-right: 65px;
 }
-.musicsList{
+
+.musicsList {
 	display: inline-block;
 	margin: 8px;
 	width: 135px;
 	height: 140px;
-	-webkit-box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.75);
 	border-radius: 5px;
 	white-space: nowrap;
 	cursor: pointer;
 }
-.musicsList:hover{
-	-webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.75);
+
+.musicsList:hover {
+	-webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.75);
 }
-.musicsList .albumImg{
+
+.musicsList .albumImg {
 	position: relative;
 	width: 100%;
-	height:80px;
+	height: 80px;
 	white-space: nowrap;
 	display: block;
 }
-.musicsList .albumImg img{
-	max-width: 100%; 
+
+.musicsList .albumImg img {
+	max-width: 100%;
 	width: 100%;
 	height: 100%;
 	white-space: nowrap;
 	border-radius: 5px 5px 0px 0px;
 	display: block;
 }
-.musicsList .albumImg span.fas{
+
+.musicsList .albumImg span.fas {
 	position: absolute;
 	top: 2px;
-	right:2px;
-	color:#ad0303;
+	right: 2px;
+	color: #ad0303;
 	opacity: 0;
 	background-color: black;
 	padding: 2px;
 	border-radius: 5px;
 }
-.musicsList:hover span.fas{
+
+.musicsList:hover span.fas {
 	opacity: 1;
 }
-.musicsList .title{
+
+.musicsList .title {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -262,10 +400,11 @@ html {
 	font-size: 12px;
 	padding: 5px;
 	color: #444;
-	padding-top:15px;
+	padding-top: 15px;
 	padding-bottom: 2px;
 }
-.musicsList .artist{
+
+.musicsList .artist {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -276,51 +415,58 @@ html {
 	color: #848484;
 	font-weight: bold;
 }
-.loadMoreButton{
+
+.loadMoreButton {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
-#actionsWrapper{
+
+#actionsWrapper {
 	padding-left: 50px;
 	padding-right: 50px;
 	padding-top: 10px;
 }
-#actionsWrapper .upload{
+
+#actionsWrapper .upload {
 	background-color: #1cb3e4;
 	margin-bottom: 0px !important;
 	padding: 10px;
 	font-size: 40px;
 	color: white;
 	font-weight: 800;
-	-webkit-box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.75);
 	width: 100%;
 	position: relative;
 	overflow: hidden;
 	cursor: pointer;
 }
-#actionsWrapper .upload input{
+
+#actionsWrapper .upload input {
 	position: absolute;
 	width: 100%;
 	opacity: 0;
 	text-align: left;
 	margin: -10px;
 }
-#actionsWrapper .upload:hover{
-	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,1);
-	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,1);
-	box-shadow: 0px 0px 5px 0px rgba(0,0,0,1);
+
+#actionsWrapper .upload:hover {
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 1);
 }
-#actionsWrapper .upload p{
+
+#actionsWrapper .upload p {
 	margin: -10px!important;
 	text-align: center;
 }
-#musicPlayer{
-	-webkit-box-shadow: 0px 10px 27px 3px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 10px 27px 3px rgba(0,0,0,0.75);
-	box-shadow: 0px 10px 27px 3px rgba(0,0,0,0.75);
+
+#musicPlayer {
+	-webkit-box-shadow: 0px 10px 27px 3px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 10px 27px 3px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 10px 27px 3px rgba(0, 0, 0, 0.75);
 	border-radius: 30px;
 	margin-left: auto;
 	margin-right: auto;
@@ -328,150 +474,199 @@ html {
 	height: 350px;
 	width: 220px;
 }
-#musicPlayer .albumImg{
+
+#musicPlayer .albumImg {
 	display: block;
 	width: 100%;
 	height: 140px;
 	border-radius: 30px 30px 0px 0px;
 }
-#musicPlayer .albumImg img{
+
+#musicPlayer .albumImg img {
 	width: 100%;
 	border-radius: 30px 30px 0px 0px;
 	height: 140px;
 }
-.sticky{
+
+.sticky {
 	position: fixed;
-	bottom:15px;
+	bottom: 15px;
 	right: 15px;
 }
-.playAllButton{
-	color:#242424;
-	padding:10px;
+
+.playAllButton {
+	color: #242424;
+	padding: 10px;
 	font-size: 18px;
+	display: none;
 }
-.musicPlayerMiscWrapper{
+
+.songTitle{
+	color:#707070;
+	padding-left:10px;
+	padding-right: 10px;
+	font-size: 14px;
+	display: block;
+	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.musicPlayerMiscWrapper {
 	height: 175px;
 }
+
 /* changing the media player */
-#musicPlayer #mainAudioPlayer{
+
+#musicPlayer #mainAudioPlayer {
 	padding: 5px;
 	padding-left: 8px;
 	padding-right: 8px;
 }
-#mainAudioPlayer .plyr__controls{
+
+#mainAudioPlayer .plyr__controls {
 	background-color: grey !important;
 	padding: 5px;
 	padding-left: 5px;
 	padding-right: 5px;
 	border-radius: 5px;
-	color:white !important;
+	color: white !important;
 }
-#mainAudioPlayer .plyr__control:hover{
+
+#mainAudioPlayer .plyr__control:hover {
 	background: none;
 }
-#mainAudioPlayer .plyr__control.plyr__tab-focus{
+
+#mainAudioPlayer .plyr__control.plyr__tab-focus {
 	background: none!important;
 	box-shadow: none;
 }
-#mainAudioPlayerVolume .ui-slider-range{
+
+#mainAudioPlayerVolume .ui-slider-range {
 	background-color: #1cb3e4;
 	border-radius: 8px;
 }
-#musicPlayer .musicPlayerVolumeManager{
+
+#musicPlayer .musicPlayerVolumeManager {
 	padding-left: 12px;
 	padding-right: 12px;
 }
-#mainAudioPlayerVolume.ui-slider{
+
+#mainAudioPlayerVolume.ui-slider {
 	border-radius: 8px;
 }
-#mainAudioPlayerVolume.ui-slider .ui-slider-handle{
+
+#mainAudioPlayerVolume.ui-slider .ui-slider-handle {
 	border-radius: 50%;
 	opacity: 0;
 }
-#mainAudioPlayerVolume.ui-slider:hover .ui-slider-handle{
+
+#mainAudioPlayerVolume.ui-slider:hover .ui-slider-handle {
 	opacity: 1;
 }
+
 /* account setting */
-#accountSettingWrapper{
+
+#accountSettingWrapper {
 	padding-top: 50px;
 }
-#accountSettingWrapper .accountSettingBox{
+
+#accountSettingWrapper .accountSettingBox {
 	width: 300px;
 	height: auto;
-	-webkit-box-shadow: 0px 10px 25px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 10px 25px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 10px 25px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 10px 25px 0px rgba(0, 0, 0, 0.75);
 	border-radius: 40px;
 	text-align: center;
-	padding:10px;
+	padding: 10px;
 }
-.accountSettingBox span.userIcon{
+
+.accountSettingBox span.userIcon {
 	color: #007bff;
 	font-size: 100px;
 	display: block;
 	padding-bottom: 5px;
 }
-.accountSettingBox div.userInfo{
+
+.accountSettingBox div.userInfo {
 	display: block;
 	width: 100%;
 }
-.accountSettingBox .accountSettingChangePassword{
+
+.accountSettingBox .accountSettingChangePassword {
 	width: 90%;
 	margin-left: 5%;
-	padding:5px;
+	padding: 5px;
 }
-.accountSettingBox .accountSettingChangePassword input{
-	border:none!important;
+
+.accountSettingBox .accountSettingChangePassword input {
+	border: none!important;
 	background-color: #9ed3d9;
 	text-align: center;
 	color: white;
-	margin:10px;
+	margin: 10px;
 	margin-left: 0px;
 	margin-right: 0px;
 }
-.accountSettingBox .accountSettingChangePassword input:focus{
-	border:none!important;
+
+.accountSettingBox .accountSettingChangePassword input:focus {
+	border: none!important;
 }
-.accountSettingBox .accountSettingChangePassword input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+
+.accountSettingBox .accountSettingChangePassword input::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: white;
-  	opacity: 1; /* Firefox */
+	opacity: 1;
+	/* Firefox */
 }
-.accountSettingBox .accountSettingChangePassword input::-ms-input-placeholder { /* Internet Explorer 10-11 */
+
+.accountSettingBox .accountSettingChangePassword input::-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
 	color: white;
 }
-.accountSettingBox .accountSettingChangePassword input::-ms-input-placeholder { /* Microsoft Edge */
+
+.accountSettingBox .accountSettingChangePassword input::-ms-input-placeholder {
+	/* Microsoft Edge */
 	color: white;
 }
-#changePasswordButton{
+
+#changePasswordButton {
 	background-color: #9ed3d9;
 	border: none;
 	color: #008999;
-	-webkit-box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.75);
+	-webkit-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
+	-moz-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.75);
 	font-weight: bold;
 	margin-top: 25px;
 	margin-bottom: 30px;
 }
-.catHeading{
+
+.catHeading {
 	text-shadow: 1px 0.5px #a7a7a7;
 	color: #777;
 	margin-bottom: 0px!important;
 	font-size: 20px;
 }
-.catMostPlayed{
+
+.catMostPlayed {
 	padding-bottom: 15px;
 }
-.allSongsCat .p-2{
+
+.allSongsCat .p-2 {
 	margin: 0px !important;
 	padding: 0px !important;
 	position: relative;
 }
-.allSongsCat .p-2 h3{
+
+.allSongsCat .p-2 h3 {
 	width: 100%;
 	cursor: pointer;
 }
-.allSongsCat .p-2 .form-group{
+
+.allSongsCat .p-2 .form-group {
 	margin: 0px;
 	padding: 0px;
 	opacity: 0;
@@ -480,20 +675,24 @@ html {
 	width: 100%;
 	cursor: pointer;
 }
-.allSongsCat .p-2 .form-group select{
+
+.allSongsCat .p-2 .form-group select {
 	padding: 2px;
 	height: auto;
 	font-size: 0.8rem;
 }
+
 /*footer*/
-#footerWrapper{
+
+#footerWrapper {
 	position: absolute;
 	right: 0;
-  	bottom: 0;
-  	left: 0;
-  	text-align: center;
+	bottom: 0;
+	left: 0;
+	text-align: center;
 }
-#footerWrapper p{
+
+#footerWrapper p {
 	margin: 0px;
 	color: #757575;
 }

@@ -12,7 +12,7 @@
 				<h3 class="catHeading"><span class='fas fa-heart'></span>&nbsp;Most Played</h3>
 				<div class="catMostPlayed" id='catMostPlayed'>
 					{% for sn, title, artist in mostPlayedSongs %}
-					<div class='musicsList' onClick='playThisSong({{ sn }});'>
+					<div class='musicsList' onClick='playThisSong({{ sn }}, "{{ title }}");'>
 						<span class='albumImg'>
 							<img src="thumbnail/{{ sn }}/">
 							<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
@@ -44,7 +44,7 @@
 
 				<div id='musicsWrapper'>
 					{% for sn, title, artist in songs %}
-					<div class='musicsList' onClick='playThisSong({{ sn }});'>
+					<div class='musicsList' onClick='playThisSong({{ sn }}, "{{ title }}");'>
 						<span class='albumImg'>
 							<img src="thumbnail/{{ sn }}/">
 							<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
@@ -82,6 +82,7 @@
 					<div id='mainAudioPlayer'>
 						<audio><source type='audio/mp3' /></audio>
 					</div>
+					<span class='songTitle'><span class="fas fa-music" id='songTitle'> Not Playing</span></span>
 					<span class='playAllButton'><span class="fas fa-forward"></span> Play All </span>
 				</div>
 

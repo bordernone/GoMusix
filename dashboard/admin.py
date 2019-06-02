@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import UserSong
 
-# Register your models here.
+
+admin.site.register(UserSong)

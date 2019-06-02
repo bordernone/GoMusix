@@ -1,6 +1,6 @@
 # api/urls.py
 from django.urls import path, re_path
-from .views import api, getToken, refreshToken, userSongsDetail, songsDetailsBasic, songsThumbnail, playSong, signup
+from .views import api, getToken, refreshToken, userSongsDetail, songsDetailsBasic, songsThumbnail, playSong, signup, recoverAccount
 
 urlpatterns = [
     path('', userSongsDetail, name='api'),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('songs/thumbnail/', songsThumbnail, name='songsThumbnail'),
     path('songs/play/', playSong, name='playSong'),
     path('signup/', signup, name='signup'),
+    path('recover/', recoverAccount, name='recover'),
 ]

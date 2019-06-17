@@ -107,7 +107,6 @@ EMAIL_USE_TLS = False
 EMAIL_HOST = 'mail.gomusix.net'
 EMAIL_PORT = 26
 EMAIL_HOST_USER = 'accounts@gomusix.net'
-EMAIL_HOST_PASSWORD = '5qlInjection'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

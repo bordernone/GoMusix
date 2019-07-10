@@ -5,14 +5,17 @@ from django.conf import settings
 from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.core.mail import send_mail
 from .models import apiKeys
 from .utils import verifyToken
 from dashboard.models import UserSong
 from GoMusix.settings import MUSICFILES_DIR
 from dashboard.utils import getTitle, getArtist, getThumbnail, getMimeType, getExtension
+from homepage.utils import confirmEmailAddress, confirmUsername, confirmPassword
 import uuid
 import json
 import os
+import random
 
 # Create your views here.
 def api(request):
@@ -184,3 +187,53 @@ def playSong(request):
             return Http404
     else:
         return Http404
+
+@csrf_exempt
+def signup(request):
+    if not 'username' in request.POST:return JsonResponse({'errorMsg':'Username is required'})
+    if not 'password' in request.POST:return JsonResponse({'errorMsg':'Password is required'})
+    if not 'email' in request.POST:return JsonResponse({'errorMsg':'Email is required'})
+    username = request.POST['username']
+    email = request.POST['email']
+    password = request.POST['password']
+    verifyEmail = confirmEmailAddress(email)
+    verifyUsername = confirmUsername(username)
+    verifyPassword = confirmPassword(password)
+
+    if verifyEmail=='Success':
+        if verifyUsername=='Success':
+            if verifyPassword=='Success':
+                query = User.objects.create_user(username=username, password=password, email=email)
+                query.save()
+                return JsonResponse({'successMsg': 'Registration Complete'})
+            else:
+                return JsonResponse({'errorMsg':verifyPassword})
+        else:
+            return JsonResponse({'errorMsg':verifyUsername})
+    else:
+        return JsonResponse({'errorMsg':verifyEmail})
+
+@csrf_exempt
+def recoverAccount(request):
+    if not 'recoveryemail' in request.POST:return JsonResponse({'errorMsg':'Email is required'})
+
+    emailAddress = request.POST['recoveryemail']
+    if User.objects.filter(email=emailAddress).exists():
+        newPassword = str(random.randint(50000,10000000)) #generate a random password
+
+        thisUser = User.objects.filter(email=emailAddress)[0]
+        thisUser.set_password(newPassword)
+        thisUser.save() #changing the password
+
+        #sending email
+        send_mail(
+            'Account Recovery',
+            'Your new password is: ' + newPassword,
+            'accounts@gomusix.net',
+            [emailAddress],
+            fail_silently=False,
+        )
+
+        return JsonResponse({'successMsg':'Please check your email inbox'})
+    else:
+        return JsonResponse({'errorMsg':'No account assosciated with this email address'})

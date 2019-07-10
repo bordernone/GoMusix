@@ -23,6 +23,7 @@ def confirmEmailAddress(emailAddress):
 
 def confirmUsername(username):
 	if re.search("^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$", username):
+		#check if username already exists
 		if User.objects.filter(username=username).exists():
 			return 'Username taken'
 		else:

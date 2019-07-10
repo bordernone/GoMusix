@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from .accountinfo import EMAILADDRESS, EMAILPASSWORD
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -106,7 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 EMAIL_USE_TLS = False
 EMAIL_HOST = 'mail.gomusix.net'
 EMAIL_PORT = 26
-EMAIL_HOST_USER = 'accounts@gomusix.net'
+EMAIL_HOST_USER = EMAILADDRESS
+EMAIL_HOST_PASSWORD = EMAILPASSWORD
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

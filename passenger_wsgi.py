@@ -1,0 +1,1 @@
+from GoMusix.wsgi import application

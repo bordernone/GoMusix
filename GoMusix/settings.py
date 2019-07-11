@@ -128,8 +128,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# For development
+"""
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 #STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MUSICFILES_DIR = os.path.join(BASE_DIR, 'static/dashboard/musics/')
+"""
+
+# for deployment
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+STATIC_ROOT = '/home/gomusixn/public_html/static'
+
+MUSICFILES_DIR = '/home/gomusixn/public_html/static/dashboard/musics/'

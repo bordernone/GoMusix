@@ -11,27 +11,20 @@
 				<!--======== display most played songs here============-->
 				<h3 class="catHeading"><span class='fas fa-heart'></span>&nbsp;Most Played</h3>
 				<div class="catMostPlayed" id='catMostPlayed'>
-					{% if mostPlayedSongs|length != 0 %}
-						{% for sn, title, artist in mostPlayedSongs %}
-						<div class='musicsList' onClick='playThisSong({{ sn }}, "{{ title }}");'>
-							<span class='albumImg'>
-								<img src="thumbnail/{{ sn }}/">
-								<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
-							</span>
-							<span class='title'>
-								{{ title }}
-							</span>
-							<span class='artist'>
-								{{ artist }}
-							</span>
-						</div>
-						{% endfor %}
-					{% else %}
-						<div class="alert alert-danger alert-dismissible fade show mt-3 m-2">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							<strong>Empty!</strong> You've not uploaded any songs yet.
-						</div>
-					{% endif %}
+					{% for sn, title, artist in mostPlayedSongs %}
+					<div class='musicsList' onClick='playThisSong({{ sn }}, "{{ title }}");'>
+						<span class='albumImg'>
+							<img src="thumbnail/{{ sn }}/">
+							<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
+						</span>
+						<span class='title'>
+							{{ title }}
+						</span>
+						<span class='artist'>
+							{{ artist }}
+						</span>
+					</div>
+					{% endfor %}
 				</div>
 
 
@@ -50,27 +43,20 @@
 				</div>
 
 				<div id='musicsWrapper'>
-					{% if songs|length != 0 %}
-						{% for sn, title, artist in songs %}
-						<div class='musicsList' onClick='playThisSong({{ sn }}, "{{ title }}");'>
-							<span class='albumImg'>
-								<img src="thumbnail/{{ sn }}/">
-								<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
-							</span>
-							<span class='title'>
-								{{ title }}
-							</span>
-							<span class='artist'>
-								{{ artist }}
-							</span>
-						</div>
-						{% endfor %}
-					{% else %}
-						<div class="alert alert-danger alert-dismissible fade show mt-3 m-2 mb-4">
-							<button type="button" class="close" data-dismiss="alert">&times;</button>
-							<strong>Empty!</strong> You've not uploaded any songs yet.
-						</div>
-					{% endif %}
+					{% for sn, title, artist in songs %}
+					<div class='musicsList' onClick='playThisSong({{ sn }}, "{{ title }}");'>
+						<span class='albumImg'>
+							<img src="thumbnail/{{ sn }}/">
+							<span class="fas dashboardSongDeleteButton" data-toggle="modal" data-target="#deleteConfirmationModal" onclick='$("#songDeleteConfirmButton").attr("data-song-id", {{ sn }}); deleteIconClick(event);'>&#xf2ed;</span>
+						</span>
+						<span class='title'>
+							{{ title }}
+						</span>
+						<span class='artist'>
+							{{ artist }}
+						</span>
+					</div>
+					{% endfor %}
 				</div>
 				<!--================ Load More Button =========================-->
 				<button type="button" class="btn btn-outline-secondary loadMoreButton" onclick="loadmoremusics(this);">

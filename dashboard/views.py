@@ -225,19 +225,18 @@ def deleteSong(request):
 				if userOwnsFile == True:
 					fileName = sn+'.tmp'
 					filePath = MUSICFILES_DIR + fileName
+					#deleting the record for this file
+					thisSong = UserSong.objects.get(sn=sn, username=username)
+					thisSong.delete()
 					if os.path.exists(filePath):
 						try:
 							os.remove(filePath)
 						except OSError as e:
 							logger.error('Deletion failed(' + username + '): ' + e.strerror)
 							return HttpResponse('File deletion failed: '+ e.strerror) if settings.DEBUG else Http404
-
-						#deleting the record for this file
-						thisSong = UserSong.objects.get(sn=sn, username=username)
-						thisSong.delete()
 						return HttpResponse('success')
 					else:
-						return HttpResponse('File not found') if settings.DEBUG else Http404
+						return HttpResponse('File not found') if settings.DEBUG else HttpResponse('success')
 				else:
 					return HttpResponse('Permission denied') if settings.DEBUG else Http404
 				

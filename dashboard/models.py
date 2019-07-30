@@ -9,4 +9,4 @@ class UserSong(models.Model):
 	timesplayed = models.IntegerField(default=0)
 
 	def __str__(self):
-		return self.sn
+		return str(self.sn)

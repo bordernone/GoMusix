@@ -144,4 +144,5 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = '/home/gomusixn/public_html/static'
 
-MUSICFILES_DIR = '/home/gomusixn/public_html/static/dashboard/musics/'
+#MUSICFILES_DIR = '/home/gomusixn/public_html/static/dashboard/musics/'
+MUSICFILES_DIR = os.path.join(BASE_DIR, 'static/dashboard/musics/')

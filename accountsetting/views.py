@@ -4,8 +4,10 @@ from django.contrib.auth import authenticate, login
 from django.conf import settings
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from homepage.utils import confirmPassword
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def accountSetting(request):
 	if request.user.is_authenticated:
 		title = {'title':'Change your account settings | GoMusix'}
@@ -16,6 +18,7 @@ def accountSetting(request):
 		else:
 			return Http404
 
+@login_required
 def changePassword(request):
 	if request.user.is_authenticated:
 		if request.method != 'POST':

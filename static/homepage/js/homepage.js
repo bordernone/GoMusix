@@ -146,7 +146,14 @@ function login(username, password) {
             NProgress.done();
 
             if (data == 'Success') {
-                location.href = 'dashboard/';
+                try {
+                    let url_string = window.location.href;
+                    var url = new URL(url_string);
+                    var c = url.searchParams.get("next");
+                    location.href = c;
+                } catch (error) {
+                    location.href = 'dashboard/';
+                }
             } else {
                 enableElements(elementsId);
                 createCustomNotification(data, 'danger');

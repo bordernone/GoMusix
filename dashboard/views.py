@@ -11,6 +11,7 @@ from .utils import handle_uploaded_file, getTitle, getMimeType, getArtist, getTh
 from .models import UserSong
 from django.conf import settings
 from mimetypes import MimeTypes
+from django.contrib.auth.decorators import login_required
 import urllib
 import logging
 import os
@@ -19,7 +20,7 @@ import json
 #logger for logging errors
 logger = logging.getLogger(__name__)
 
-# Create your views here.
+@login_required
 def dashboard(request):
 	if request.user.is_authenticated:
 		username = request.user.username
@@ -75,6 +76,7 @@ def dashboard(request):
 	else:
 		return redirect('/')
 
+@login_required
 def uploadMusic(request):
 	if request.user.is_authenticated:
 		username = request.user.username
@@ -133,6 +135,7 @@ def uploadMusic(request):
 		else:
 			return Http404
 
+@login_required
 def playMusic(request, sn):
 	if request.user.is_authenticated:
 		username = request.user.username
@@ -210,6 +213,7 @@ def displayThumbnail(request, sn):
 		else:
 			return Http404
 
+@login_required
 def deleteSong(request):
 	if request.user.is_authenticated:
 		if request.method == 'POST':

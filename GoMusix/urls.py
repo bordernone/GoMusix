@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import render
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,4 +23,6 @@ urlpatterns = [
     path('', include('dashboard.urls')), # dashboard
     path('', include('accountsetting.urls')), # account setting
     path('api/', include('api.urls')), #api
+    path('privacy-policy/', lambda request: render(request, 'privacy-policy.html'), name='privacy-policy'), #privacy policy
+    path('terms-and-conditions/', lambda request: render(request, 'terms-and-conditions.html'), name='terms-and-conditions'), # terms and conditions
 ]

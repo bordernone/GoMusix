@@ -150,7 +150,11 @@ function login(username, password) {
                     let url_string = window.location.href;
                     var url = new URL(url_string);
                     var c = url.searchParams.get("next");
-                    location.href = c;
+                    if (c.length > 0){
+                        location.href = c;
+                    } else {
+                        location.href = 'dashboard/';
+                    }
                 } catch (error) {
                     location.href = 'dashboard/';
                 }

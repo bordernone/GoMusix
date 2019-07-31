@@ -46,6 +46,11 @@
 	<!-- ========== For settings page =========-->
 	<script type="text/javascript" src="{% static 'accountsetting/js/accountsetting.js' %}"></script>
 	{% endif %}
+
+	{% if request.path == '/privacy-policy/' or request.path == '/terms-and-conditions/' %}
+	<!-- ========== For privacy policy page =========-->
+	<link rel='stylesheet' href="{% static 'privacy-policy/css/privacy-policy.css' %}" />
+	{% endif %}
 </head>
 <body>
 <!-- =============================== Notification Panel ==========================================-->
